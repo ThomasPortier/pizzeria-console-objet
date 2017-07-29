@@ -2,12 +2,18 @@ package fr.pizzeria.console;
 
 import java.util.Scanner;
 
+import fr.pizzeria.model.Pizza;
+
+
 public class PizzeriaAdminConsoleApp {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
 			afficherMenu();
+			
+			Pizza [] pizzas = new Pizza[100];
+			pizzas[0]=new Pizza();
 			
 			Scanner entryUser=new Scanner(System.in);
 			String name=entryUser.next();
@@ -40,6 +46,8 @@ public class PizzeriaAdminConsoleApp {
 			}
 			System.out.println("Aurevoir ");
 			entryUser.close();
+			
+			
 	}
 
 	public static void checkIfIntegerValide(Scanner entryUser, int result) {
