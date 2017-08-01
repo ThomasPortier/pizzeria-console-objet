@@ -1,11 +1,15 @@
 package fr.pizzeria.console;
 
+//import java.util.Scanner;
+
+import fr.pizzeria.model.Pizza;
+
 public class ListerPizzaOptionMenu extends OptionMenu {
 
-	private Pizza[] pizzas;
+	private IPizzaDao dao;
 
-	public ListerPizzaOptionMenu(Pizza[] pizzas) {
-		this.pizzas = pizzas;
+	public ListerPizzaOptionMenu(IPizzaDao dao) {
+		this.dao = dao;
 
 	}
 
@@ -18,7 +22,7 @@ public class ListerPizzaOptionMenu extends OptionMenu {
 		// }
 		// }
 		// System.out.println("--------------------------------------------------");
-
+		Pizza [] pizzas =dao.findAllPizzas();
 		for (int i = 0; i < pizzas.length - 1; i++) {
 			if (pizzas[i] == null) {
 				break;

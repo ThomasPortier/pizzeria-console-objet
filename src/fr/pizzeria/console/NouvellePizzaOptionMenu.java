@@ -2,18 +2,16 @@ package fr.pizzeria.console;
 
 import java.util.Scanner;
 
+import fr.pizzeria.model.Pizza;
+
 public class NouvellePizzaOptionMenu extends OptionMenu {
 
-	private Pizza[] pizzas;
+	private IPizzaDao dao;
 	private Scanner scanner;
 
-	public NouvellePizzaOptionMenu(Pizza[] pizzas, Scanner scanner) {
-		this.pizzas = pizzas;
+	public NouvellePizzaOptionMenu(IPizzaDao dao, Scanner scanner) {
+		this.dao = dao;
 		this.scanner = scanner;
-	}
-
-	public void getLibelle() {
-
 	}
 
 	public void execute() {
@@ -30,14 +28,9 @@ public class NouvellePizzaOptionMenu extends OptionMenu {
 
 		// Conversion du prix en double
 		double prix = Double.parseDouble(prixStr);
+		Pizza nouvellePizza = new Pizza(code, nom, prix);
 
-		for (int i = 0; i < pizzas.length; i++) {
-			if (pizzas[i] == null) {
-				pizzas[i] = new Pizza(code, nom, prix);
-				break;
-			}
-
-		}
+		dao.saveNewPizza(nouvellePizza);
 
 	}
 
