@@ -2,71 +2,67 @@ package fr.pizzeria.console;
 
 import java.util.Scanner;
 
-import fr.pizzeria.model.Pizza;
-
-
 public class PizzeriaAdminConsoleApp {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		
+
+		// Initialisation d'un tableau de 100 pizzas
+		Pizza[] pizzas = new Pizza[100];
+		pizzas[0] = new Pizza("PEP", "Pépéroni", 12.50);
+		pizzas[1] = new Pizza("MAR", "Margherita", 14.00);
+		pizzas[2] = new Pizza("REI", "La Reine", 11.50);
+		pizzas[3] = new Pizza("FRO", "La 4 fromages", 12.00);
+		pizzas[4] = new Pizza("CAN", "La cannibale", 12.50);
+		pizzas[5] = new Pizza("SAV", "La savoyarde", 13.00);
+		pizzas[6] = new Pizza("ORI", "L'orientale", 13.50);
+		pizzas[7] = new Pizza("IND", "L'indienne", 14.00);
+
+		// Initialisation du scanner qui va permettre de poser des questions à
+		// l'utilisateur
+		Scanner scanner = new Scanner(System.in);
+		int choix = 0;
+		do {
 			afficherMenu();
-			
-			Pizza [] pizzas = new Pizza[100];
-			pizzas[0]=new Pizza();
-			
-			Scanner entryUser=new Scanner(System.in);
-			String name=entryUser.next();
-			int result = Integer.parseInt(name);
+			choix = scanner.nextInt();
 
-			checkIfIntegerValide(entryUser, result);
-			
-			
-			while (result != 99){ 
-
-				if (result == 1){
-					System.out.println("Liste des pizzas");
-				}
-				else if (result == 2){
-					System.out.println("Ajout d’une nouvelle pizza");
-				}
-				else if (result == 3){
-					System.out.println("Mise à jour d’une pizza");
-				}
-				else if (result == 4){
-					System.out.println("Suppression d’une pizza");
-				}
-				
-				afficherMenu();
-
-				name=entryUser.next();
-				result = Integer.parseInt(name);
-				checkIfIntegerValide(entryUser, result);
-				
+			switch (choix) {
+			case 1:		
+				ListerPizzaOptionMenu liste = new ListerPizzaOptionMenu(pizzas);
+				liste.execute();	
+				break;
+			case 2:
+				NouvellePizzaOptionMenu nouvellePizza = new NouvellePizzaOptionMenu(pizzas,scanner);
+				nouvellePizza.execute();
+				break;
+			case 3:
+				ModifierPizzaOptionMenu modifierPizza = new ModifierPizzaOptionMenu(pizzas,scanner);
+				modifierPizza.execute();
+				break;
+			case 4:	
+				SupprimerPizzaOptionMenu supprimerPizza = new SupprimerPizzaOptionMenu(pizzas,scanner);
+				supprimerPizza.execute();	
+				break;
+			case 99:
+				System.out.println("Au revoir !!!!.");
+				break;
+			default:
+				System.out.println("Choix inexistant.");
+				break;
 			}
-			System.out.println("Aurevoir ");
-			entryUser.close();
-			
-			
+
+		} while (choix != 99);
+
+		scanner.close();
 	}
 
-	public static void checkIfIntegerValide(Scanner entryUser, int result) {
-		String name;
-		while((result != 1 ^ result != 2 ^ result != 3 ^ result != 4 ^ result != 99)){
-		System.out.println("Utiliser les caractere 1 ou 2 ou 3 ou 4 ou 99.");
-		name=entryUser.next();
-		result = Integer.parseInt(name);
-
-		}
-		//return result;
-	}
-
-	public static void afficherMenu() {
-		System.out.println("***** Pizzeria Administration ***** \n ");
-		System.out.println("1. Lister les pizzas \n ");
-		System.out.println("2. Ajouter une nouvelle pizza \n ");
-		System.out.println("3. Mettre à jour une pizza \n ");
-		System.out.println("4. Supprimer une pizza \n ");
+	private static void afficherMenu() {
+		System.out.println("***** Pizzeria Administration *****");
+		System.out.println("1. Lister les pizzas");
+		System.out.println("2. Ajouter une nouvelle pizza ");
+		System.out.println("3. Mettre à jour une pizza");
+		System.out.println("4. Supprimer une pizza");
 		System.out.println("99. Sortir");
+		System.out.println("Veuillez sélectionner une option de menu:");
 	}
 }
