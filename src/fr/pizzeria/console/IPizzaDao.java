@@ -1,10 +1,13 @@
 package fr.pizzeria.console;
 
+import java.util.ArrayList;
+
 import fr.pizzeria.model.Pizza;
 
 public interface IPizzaDao {
-	
-	Pizza[] findAllPizzas();
+
+	ArrayList<Pizza> findAllPizzas();
+	//Pizza[] findAllPizzas();
 
 	boolean saveNewPizza(Pizza pizza);
 

@@ -2,7 +2,7 @@ package fr.pizzeria.console;
 
 import java.util.Scanner;
 
-import fr.pizzeria.model.Pizza;
+//import fr.pizzeria.model.Pizza;
 
 public class SupprimerPizzaOptionMenu extends OptionMenu {
 
@@ -16,24 +16,9 @@ public class SupprimerPizzaOptionMenu extends OptionMenu {
 
 	public void execute() {
 		System.out.println("Veuillez choisir la pizza à supprimer.");
-		String codePizza = scanner.next();
+		String codePizza = scanner.next(); //.toString();
 
 		dao.deletePizza(codePizza);
-
-		// int indexPizza = -1;
-		// for (int i = 0; i < pizzas.length; i++) {
-		// if (pizzas[i].getCode().equals(codePizza)) {
-		// indexPizza = i;
-		// break;
-		// }
-		// }
-		//
-		// if (indexPizza != -1) {
-		// pizzas[indexPizza] = null;
-		// }
-		// else {
-		// System.out.println("Code inexistant :"+codePizza);
-		// }
 	}
 
 }

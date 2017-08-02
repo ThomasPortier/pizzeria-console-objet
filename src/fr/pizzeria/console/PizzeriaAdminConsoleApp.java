@@ -2,23 +2,13 @@ package fr.pizzeria.console;
 
 import java.util.Scanner;
 
-import fr.pizzeria.model.Pizza;
+//import fr.pizzeria.model.Pizza;
 
 public class PizzeriaAdminConsoleApp {
 
 	public static void main(String[] args) {
-		
-		PizzaDaoMemoire dao = new PizzaDaoMemoire();
-		// Initialisation d'un tableau de 100 pizzas
-//		Pizza[] pizzas = new Pizza[100];
-//		pizzas[0] = new Pizza("PEP", "Pépéroni", 12.50);
-//		pizzas[1] = new Pizza("MAR", "Margherita", 14.00);
-//		pizzas[2] = new Pizza("REI", "La Reine", 11.50);
-//		pizzas[3] = new Pizza("FRO", "La 4 fromages", 12.00);
-//		pizzas[4] = new Pizza("CAN", "La cannibale", 12.50);
-//		pizzas[5] = new Pizza("SAV", "La savoyarde", 13.00);
-//		pizzas[6] = new Pizza("ORI", "L'orientale", 13.50);
-//		pizzas[7] = new Pizza("IND", "L'indienne", 14.00);
+
+		IPizzaDao dao = new PizzaDaoList();
 
 		// Initialisation du scanner qui va permettre de poser des questions à
 		// l'utilisateur
@@ -29,21 +19,21 @@ public class PizzeriaAdminConsoleApp {
 			choix = scanner.nextInt();
 
 			switch (choix) {
-			case 1:		
+			case 1:
 				ListerPizzaOptionMenu liste = new ListerPizzaOptionMenu(dao);
-				liste.execute();	
+				liste.execute();
 				break;
 			case 2:
-				NouvellePizzaOptionMenu nouvellePizza = new NouvellePizzaOptionMenu(dao,scanner);
+				NouvellePizzaOptionMenu nouvellePizza = new NouvellePizzaOptionMenu(dao, scanner);
 				nouvellePizza.execute();
 				break;
 			case 3:
-				ModifierPizzaOptionMenu modifierPizza = new ModifierPizzaOptionMenu(dao,scanner);
+				ModifierPizzaOptionMenu modifierPizza = new ModifierPizzaOptionMenu(dao, scanner);
 				modifierPizza.execute();
 				break;
-			case 4:	
-				SupprimerPizzaOptionMenu supprimerPizza = new SupprimerPizzaOptionMenu(dao,scanner);
-				supprimerPizza.execute();	
+			case 4:
+				SupprimerPizzaOptionMenu supprimerPizza = new SupprimerPizzaOptionMenu(dao, scanner);
+				supprimerPizza.execute();
 				break;
 			case 99:
 				System.out.println("Au revoir !!!!.");

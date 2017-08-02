@@ -18,7 +18,7 @@ public class NouvellePizzaOptionMenu extends OptionMenu {
 
 		System.out.println("Ajout d'une nouvelle pizza");
 		System.out.println("Veuillez saisir le code:");
-		String code = scanner.next();
+		String code = scanner.next().toUpperCase();
 
 		System.out.println("Veuillez saisir le nom (sans espace):");
 		String nom = scanner.next();
