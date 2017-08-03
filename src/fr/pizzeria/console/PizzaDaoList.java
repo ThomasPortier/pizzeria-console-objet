@@ -1,8 +1,10 @@
 package fr.pizzeria.console;
 
-import java.util.ArrayList;
-
+import fr.pizzeria.model.BasePizza;
 import fr.pizzeria.model.Pizza;
+
+import java.util.ArrayList;
+//import java.util.Locale.Category;
 
 public class PizzaDaoList implements IPizzaDao {
 
@@ -11,14 +13,14 @@ public class PizzaDaoList implements IPizzaDao {
 	public PizzaDaoList() {
 
 		// ArrayList<Pizza> pizzas = new ArrayList<>();
-		pizzas.add(new Pizza("PEP", "Pépéroni", 12.50));
-		pizzas.add(new Pizza("MAR", "Margherita", 14.00));
-		pizzas.add(new Pizza("REI", "La Reine", 11.50));
-		pizzas.add(new Pizza("FRO", "La 4 fromages", 12.00));
-		pizzas.add(new Pizza("CAN", "La cannibale", 12.50));
-		pizzas.add(new Pizza("SAV", "La savoyarde", 13.00));
-		pizzas.add(new Pizza("ORI", "L'orientale", 13.50));
-		pizzas.add(new Pizza("IND", "L'indienne", 14.00));
+		pizzas.add(new Pizza(BasePizza.CREME, "PEP", "Pépéroni", 12.50));
+		pizzas.add(new Pizza(BasePizza.TOMATE, "MAR", "Margherita", 14.00));
+		pizzas.add(new Pizza(BasePizza.TOMATE, "REI", "La Reine", 11.50));
+		pizzas.add(new Pizza(BasePizza.CREME, "FRO", "La 4 fromages", 12.00));
+		pizzas.add(new Pizza(BasePizza.TOMATE, "CAN", "La cannibale", 12.50));
+		pizzas.add(new Pizza(BasePizza.CREME, "SAV", "La savoyarde", 13.00));
+		pizzas.add(new Pizza(BasePizza.PATATE, "ORI", "L'orientale", 13.50));
+		pizzas.add(new Pizza(BasePizza.TOMATE, "IND", "L'indienne", 14.00));
 
 	}
 
@@ -35,6 +37,7 @@ public class PizzaDaoList implements IPizzaDao {
 		Integer indexPizza = -1;
 		for (Pizza pizzaModif : pizzas) {
 			indexPizza++;
+
 			if (pizzaModif.getCode().equals(codePizza)) {
 				break;
 			}
@@ -49,12 +52,21 @@ public class PizzaDaoList implements IPizzaDao {
 		for (Pizza pizzatodelete : pizzas) {
 			index++;
 			if (pizzatodelete.getCode().equals(codePizza)) {
-				pizzas.remove(index);// pizzas indexPizza = i;
-				break;
+				pizzas.remove(index);
 			}
 		}
 
 		return false;
+	}
+
+	public boolean pizzaExist(String codePizza) {
+		for (Pizza unepizza : pizzas) {
+			if (unepizza.getCode().equals(codePizza)) {
+				return true;
+			}
+		}
+		return false;
+
 	}
 
 }

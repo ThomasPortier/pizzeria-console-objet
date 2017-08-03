@@ -2,11 +2,11 @@ package fr.pizzeria.console;
 
 import java.util.Scanner;
 
-//import fr.pizzeria.model.Pizza;
+import fr.pizzeria.exception.*;
 
 public class PizzeriaAdminConsoleApp {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws StockageException {
 
 		IPizzaDao dao = new PizzaDaoList();
 
@@ -25,15 +25,31 @@ public class PizzeriaAdminConsoleApp {
 				break;
 			case 2:
 				NouvellePizzaOptionMenu nouvellePizza = new NouvellePizzaOptionMenu(dao, scanner);
-				nouvellePizza.execute();
+				try{
+					nouvellePizza.execute();
+				}
+				catch (Exception e){
+					System.out.println(e.getMessage());
+				}
 				break;
 			case 3:
 				ModifierPizzaOptionMenu modifierPizza = new ModifierPizzaOptionMenu(dao, scanner);
-				modifierPizza.execute();
+				try{
+					modifierPizza.execute();
+				}
+				catch(Exception e){
+					System.out.println(e.getMessage());
+				}
 				break;
 			case 4:
 				SupprimerPizzaOptionMenu supprimerPizza = new SupprimerPizzaOptionMenu(dao, scanner);
-				supprimerPizza.execute();
+
+				try {
+					supprimerPizza.execute();
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+				}
+
 				break;
 			case 99:
 				System.out.println("Au revoir !!!!.");
@@ -46,6 +62,7 @@ public class PizzeriaAdminConsoleApp {
 		} while (choix != 99);
 
 		scanner.close();
+
 	}
 
 	private static void afficherMenu() {

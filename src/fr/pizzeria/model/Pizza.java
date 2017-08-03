@@ -1,27 +1,29 @@
 package fr.pizzeria.model;
 
-public class Pizza {
-	public Pizza(String code, String nom, double prix) {
+//import java.util.Locale.Category;
 
-		this.id = nextId;
+public class Pizza {
+	public Pizza(BasePizza category, String code, String nom, double prix) {
+
+		this.category = category;
 		this.code = code;
 		this.nom = nom;
 		this.prix = prix;
-		nextId++;
+
 	}
 
-	private static int nextId = 0;
-	private int id;
-	public String code;
-	public String nom;
-	public double prix;
+	private BasePizza category;
+	private String code;
+	private String nom;
+	private double prix;
 
-	public int getId() {
-		return id;
+	
+	public BasePizza getCategory() {
+		return category;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setCategory(BasePizza category) {
+		this.category = category;
 	}
 
 	public String getCode() {
@@ -49,7 +51,7 @@ public class Pizza {
 	}
 
 	public String toString() {
-		return this.code + " > " + this.nom + " > " + this.prix;
+		return this.category+ " > " +this.code + " > " + this.nom + " > " + this.prix;
 
 	}
 
